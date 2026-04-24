@@ -1,4 +1,4 @@
-import type { Accent, CategoryId } from './data';
+import { BG_GRADIENT, type Accent, type CategoryId } from './data';
 
 export type SetupConfig = {
   players: number;
@@ -75,23 +75,25 @@ export default function SetupScreen({ config, setConfig, onStart, accent }: Prop
   return (
     <div style={{
       minHeight: '100dvh', position: 'relative',
-      background: `linear-gradient(180deg, ${accent.soft} 0%, #F7F5FF 45%, #F2F2F7 100%)`,
+      background: BG_GRADIENT,
     }}>
       <div style={{ padding: 'calc(env(safe-area-inset-top) + 24px) 24px 20px', textAlign: 'center', position: 'relative' }}>
         <div style={{
-          fontSize: 44, fontWeight: 900, lineHeight: 1, marginTop: 14,
+          fontSize: 44, fontWeight: 900, lineHeight: 1, marginTop: 8,
           letterSpacing: -1.6,
           background: `linear-gradient(135deg, ${accent.deep} 0%, ${accent.base} 60%, ${accent.warm} 100%)`,
           WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
         }}>
           O Impostor
         </div>
-        <div style={{ fontSize: 15, color: '#666', marginTop: 10, lineHeight: 1.4, padding: '0 20px' }}>
-          Descobre quem não tem a palavra
-        </div>
       </div>
 
-      <div style={{ padding: '14px 16px 24px', display: 'flex', flexDirection: 'column', gap: 10 }}>
+      <div style={{ padding: '8px 16px 24px', display: 'flex', flexDirection: 'column', gap: 10 }}>
+        
+        <div style={{ marginTop: 8, marginBottom: 4, padding: '0 4px', fontSize: 13, fontWeight: 700, color: '#888', textTransform: 'uppercase', letterSpacing: 0.6 }}>
+          Número de jogadores
+        </div>
+
         <Stepper
           value={players}
           set={(v) => setConfig(c => ({ ...c, players: v, imposters: Math.min(c.imposters, v - 2) }))}
@@ -163,7 +165,6 @@ export default function SetupScreen({ config, setConfig, onStart, accent }: Prop
           }}
         >
           Jogar
-          <svg width="20" height="20" viewBox="0 0 20 20"><path d="M4 10h12m0 0l-5-5m5 5l-5 5" stroke="#fff" strokeWidth="2.4" fill="none" strokeLinecap="round" strokeLinejoin="round" /></svg>
         </button>
       </div>
     </div>

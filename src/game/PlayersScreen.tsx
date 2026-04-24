@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { AVATAR_GRADIENTS, type Accent } from './data';
+import { AVATAR_GRADIENTS, BG_GRADIENT, type Accent } from './data';
 import type { SetupConfig } from './SetupScreen';
 
 type Props = {
@@ -38,7 +38,7 @@ export default function PlayersScreen({ config, names, setNames, onBack, onStart
   return (
     <div style={{
       minHeight: '100dvh',
-      background: `linear-gradient(180deg, ${accent.soft} 0%, #F7F5FF 45%, #F2F2F7 100%)`,
+      background: BG_GRADIENT,
       display: 'flex', flexDirection: 'column',
     }}>
       <div style={{ padding: 'calc(env(safe-area-inset-top) + 16px) 20px 0', display: 'flex', alignItems: 'center', gap: 12 }}>
@@ -141,7 +141,6 @@ export default function PlayersScreen({ config, names, setNames, onBack, onStart
           }}
         >
           Começar
-          <svg width="20" height="20" viewBox="0 0 20 20"><path d="M4 10h12m0 0l-5-5m5 5l-5 5" stroke="#fff" strokeWidth="2.4" fill="none" strokeLinecap="round" strokeLinejoin="round" /></svg>
         </button>
       </div>
     </div>

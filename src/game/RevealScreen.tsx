@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { AVATAR_GRADIENTS, type Accent } from './data';
+import { useEffect, useState } from 'react';
+import {BG_GRADIENT, type Accent } from './data';
 
 export type Assignment = { isImposter: boolean; word: string; hint: string };
 
@@ -25,14 +25,27 @@ export default function RevealScreen({ names, assignments, onBack, onFinish, acc
     else onFinish();
   };
 
-  const startHold = (e: React.SyntheticEvent) => {
+  const startHold = (e: React.PointerEvent<HTMLDivElement>) => {
     e.preventDefault();
+    try { e.currentTarget.setPointerCapture(e.pointerId); } catch { /* empty */ }
     setHolding(true);
   };
   const endHold = () => setHolding(false);
 
-  const [c1, c2] = AVATAR_GRADIENTS[idx % AVATAR_GRADIENTS.length];
-  const initial = currentName.trim().charAt(0).toUpperCase() || String(idx + 1);
+  useEffect(() => {
+    if (!holding) return;
+    const release = () => setHolding(false);
+    window.addEventListener('pointerup', release);
+    window.addEventListener('pointercancel', release);
+    window.addEventListener('blur', release);
+    document.addEventListener('visibilitychange', release);
+    return () => {
+      window.removeEventListener('pointerup', release);
+      window.removeEventListener('pointercancel', release);
+      window.removeEventListener('blur', release);
+      document.removeEventListener('visibilitychange', release);
+    };
+  }, [holding]);
 
   const isImposter = !!assignment?.isImposter;
   const displayText = isImposter ? assignment?.hint : assignment?.word;
@@ -46,7 +59,7 @@ export default function RevealScreen({ names, assignments, onBack, onFinish, acc
         ? (isImposter
           ? 'linear-gradient(180deg, #1a0a1a 0%, #2b0a2b 100%)'
           : `linear-gradient(180deg, ${accent.deep} 0%, ${accent.base} 100%)`)
-        : `linear-gradient(180deg, ${accent.soft} 0%, #F7F5FF 45%, #F2F2F7 100%)`,
+        : BG_GRADIENT,
       transition: 'background 0.35s ease',
       display: 'flex', flexDirection: 'column',
       color: holding ? '#fff' : '#111',
@@ -77,14 +90,7 @@ export default function RevealScreen({ names, assignments, onBack, onFinish, acc
         <div style={{ width: 40 }} />
       </div>
 
-      <div style={{ padding: '30px 24px 0', textAlign: 'center' }}>
-        <div style={{
-          width: 84, height: 84, borderRadius: 28, margin: '0 auto',
-          background: `linear-gradient(135deg, ${c1}, ${c2})`,
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          color: '#fff', fontWeight: 800, fontSize: 36,
-          boxShadow: '0 10px 30px rgba(0,0,0,0.12), inset 0 2px 0 rgba(255,255,255,0.3)',
-        }}>{initial}</div>
+      <div key={idx} className="player-enter" style={{ padding: '30px 24px 0', textAlign: 'center' }}>
         <div style={{
           fontSize: 11, fontWeight: 700, letterSpacing: 1.4, textTransform: 'uppercase',
           marginTop: 20, opacity: 0.6,
@@ -95,16 +101,18 @@ export default function RevealScreen({ names, assignments, onBack, onFinish, acc
         }}>{currentName}</div>
       </div>
 
-      <div style={{
+      <div key={`card-${idx}`} className="player-enter" style={{
         flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center',
         padding: '24px 24px 12px',
       }}>
         <div
-          onMouseDown={startHold} onMouseUp={endHold} onMouseLeave={endHold}
-          onTouchStart={startHold} onTouchEnd={endHold} onTouchCancel={endHold}
+          onPointerDown={startHold}
+          onPointerUp={endHold}
+          onPointerCancel={endHold}
+          onPointerLeave={endHold}
           onContextMenu={(e) => e.preventDefault()}
           style={{
-            width: '100%', aspectRatio: '1 / 1.15', maxHeight: 360,
+            width: '100%', aspectRatio: '1 / 1', maxHeight: 300,
             borderRadius: 36, position: 'relative',
             cursor: 'pointer',
             overflow: 'hidden',
@@ -119,6 +127,7 @@ export default function RevealScreen({ names, assignments, onBack, onFinish, acc
             transition: 'background 0.3s, transform 0.15s',
             transform: holding ? 'scale(0.98)' : 'scale(1)',
             userSelect: 'none', WebkitUserSelect: 'none',
+            touchAction: 'none', WebkitTouchCallout: 'none',
             border: holding ? '1px solid rgba(255,255,255,0.25)' : '1px solid rgba(0,0,0,0.04)',
           }}
         >
@@ -185,7 +194,6 @@ export default function RevealScreen({ names, assignments, onBack, onFinish, acc
           }}
         >
           {idx < total - 1 ? 'Próximo jogador' : 'Começar a discussão'}
-          <svg width="20" height="20" viewBox="0 0 20 20"><path d="M4 10h12m0 0l-5-5m5 5l-5 5" stroke="currentColor" strokeWidth="2.4" fill="none" strokeLinecap="round" strokeLinejoin="round" /></svg>
         </button>
       </div>
     </div>
