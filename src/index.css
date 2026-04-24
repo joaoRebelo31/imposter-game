@@ -15,8 +15,8 @@ html, body, #root {
 }
 
 body {
-  background: #F2F2F7;
-  color: #111;
+  background: #08040f;
+  color: #F5F2FF;
   overscroll-behavior: none;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;

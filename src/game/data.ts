@@ -68,7 +68,13 @@ export const ACCENT: Accent = {
   soft: '#EFE7FF',
 };
 
-export const BG_GRADIENT = 'linear-gradient(180deg, #e0d7f5 0%, #edeaf8 45%, #ececf4 100%)';
+export const BG_GRADIENT = 'linear-gradient(180deg, #1a0f2e 0%, #130a24 55%, #08040f 100%)';
+
+export const SURFACE = 'rgba(255,255,255,0.05)';
+export const SURFACE_BORDER = '1px solid rgba(255,255,255,0.08)';
+export const TEXT_PRIMARY = '#F5F2FF';
+export const TEXT_MUTED = 'rgba(245,242,255,0.55)';
+export const TEXT_FAINT = 'rgba(245,242,255,0.35)';
 
 export const AVATAR_GRADIENTS: [string, string][] = [
   ['#FF6B9D', '#FFA8CC'], ['#5E60CE', '#64DFDF'], ['#F9C74F', '#F8961E'],

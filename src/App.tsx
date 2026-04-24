@@ -8,13 +8,14 @@ type Screen = 'setup' | 'players' | 'reveal';
 
 export default function App() {
   const [screen, setScreen] = useState<Screen>('setup');
-  const [config, setConfig] = useState<SetupConfig>({ players: 5, imposters: 1, category: 'geral' });
+  const [config, setConfig] = useState<SetupConfig>({ players: 5, imposters: 1, categories: ['geral'] });
   const [names, setNames] = useState<string[]>(['', '', '', '', '']);
   const [assignments, setAssignments] = useState<Assignment[]>([]);
   const [shuffledNames, setShuffledNames] = useState<string[]>([]);
 
   const buildAssignments = () => {
-    const pool = CATEGORY_DATA[config.category] || CATEGORY_DATA.geral;
+    const selected = config.categories.length ? config.categories : (['geral'] as const);
+    const pool = selected.flatMap(id => CATEGORY_DATA[id] ?? []);
     const pair = pool[Math.floor(Math.random() * pool.length)];
 
     const order = [...names];
@@ -47,7 +48,7 @@ export default function App() {
   return (
     <div style={{
       minHeight: '100dvh', width: '100%',
-      background: '#F2F2F7', position: 'relative', overflow: 'hidden',
+      background: '#08040f', position: 'relative', overflow: 'hidden',
     }}>
         {screen === 'setup' && (
           <SetupScreen config={config} setConfig={(u) => setConfig(u)} onStart={() => setScreen('players')} accent={ACCENT} />

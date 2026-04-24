@@ -27,8 +27,6 @@ export default function PlayersScreen({ config, names, setNames, onBack, onStart
     setNames(next);
   };
 
-  const filledCount = names.filter(n => n.trim().length > 0).length;
-
   const initial = (name: string, idx: number) => {
     const t = name.trim();
     if (t) return t.charAt(0).toUpperCase();
@@ -43,27 +41,21 @@ export default function PlayersScreen({ config, names, setNames, onBack, onStart
     }}>
       <div style={{ padding: 'calc(env(safe-area-inset-top) + 16px) 20px 0', display: 'flex', alignItems: 'center', gap: 12 }}>
         <button onClick={onBack} style={{
-          width: 40, height: 40, borderRadius: 14, border: 'none', background: '#fff',
-          cursor: 'pointer', boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
+          width: 40, height: 40, borderRadius: 14, border: '1px solid rgba(255,255,255,0.08)',
+          background: 'rgba(255,255,255,0.06)',
+          cursor: 'pointer',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
         }}>
-          <svg width="10" height="16" viewBox="0 0 10 16"><path d="M8 1L2 8l6 7" stroke="#111" strokeWidth="2.2" fill="none" strokeLinecap="round" strokeLinejoin="round" /></svg>
+          <svg width="10" height="16" viewBox="0 0 10 16"><path d="M8 1L2 8l6 7" stroke="#F5F2FF" strokeWidth="2.2" fill="none" strokeLinecap="round" strokeLinejoin="round" /></svg>
         </button>
         <div style={{ flex: 1 }} />
-        <div style={{
-          fontSize: 12, fontWeight: 700, color: accent.deep,
-          background: 'rgba(255,255,255,0.7)', padding: '6px 12px', borderRadius: 100,
-          letterSpacing: 0.4, textTransform: 'uppercase',
-        }}>
-          {filledCount}/{config.players}
-        </div>
       </div>
 
       <div style={{ padding: '24px 24px 12px' }}>
-        <div style={{ fontSize: 32, fontWeight: 900, letterSpacing: -1.2, color: '#111', lineHeight: 1.05 }}>
+        <div style={{ fontSize: 32, fontWeight: 900, letterSpacing: -1.2, color: '#F5F2FF', lineHeight: 1.05 }}>
           Quem vai jogar ?
         </div>
-        <div style={{ fontSize: 15, color: '#666', marginTop: 8 }}>
+        <div style={{ fontSize: 15, color: 'rgba(245,242,255,0.55)', marginTop: 8 }}>
           Escreve o nome de cada jogador.
         </div>
       </div>
@@ -75,10 +67,12 @@ export default function PlayersScreen({ config, names, setNames, onBack, onStart
           const focused = focusedIdx === i;
           return (
             <div key={i} style={{
-              background: '#fff', borderRadius: 20, padding: '10px 12px 10px 10px',
+              background: 'rgba(255,255,255,0.05)',
+              border: focused ? `1px solid ${accent.base}` : '1px solid rgba(255,255,255,0.08)',
+              borderRadius: 20, padding: '10px 12px 10px 10px',
               display: 'flex', alignItems: 'center', gap: 12,
-              boxShadow: focused ? `0 0 0 2px ${accent.base}, 0 4px 14px ${accent.base}30` : '0 1px 0 rgba(0,0,0,0.04)',
-              transition: 'box-shadow 0.15s',
+              boxShadow: focused ? `0 4px 14px ${accent.base}30` : 'none',
+              transition: 'all 0.15s',
             }}>
               <div style={{
                 width: 42, height: 42, borderRadius: 14,
@@ -96,7 +90,7 @@ export default function PlayersScreen({ config, names, setNames, onBack, onStart
                 maxLength={20}
                 style={{
                   flex: 1, border: 'none', outline: 'none', background: 'transparent',
-                  fontSize: 17, fontWeight: 600, color: '#111', letterSpacing: -0.3,
+                  fontSize: 17, fontWeight: 600, color: '#F5F2FF', letterSpacing: -0.3,
                   minWidth: 0,
                 }}
               />
@@ -105,11 +99,11 @@ export default function PlayersScreen({ config, names, setNames, onBack, onStart
                   onClick={() => updateName(i, '')}
                   style={{
                     width: 24, height: 24, borderRadius: 12, border: 'none',
-                    background: '#EAEAEF', cursor: 'pointer',
+                    background: 'rgba(255,255,255,0.1)', cursor: 'pointer',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                   }}
                 >
-                  <svg width="10" height="10" viewBox="0 0 10 10"><path d="M1 1l8 8M9 1l-8 8" stroke="#888" strokeWidth="1.8" strokeLinecap="round" /></svg>
+                  <svg width="10" height="10" viewBox="0 0 10 10"><path d="M1 1l8 8M9 1l-8 8" stroke="rgba(245,242,255,0.7)" strokeWidth="1.8" strokeLinecap="round" /></svg>
                 </button>
               )}
             </div>
@@ -119,7 +113,7 @@ export default function PlayersScreen({ config, names, setNames, onBack, onStart
 
       <div style={{
         padding: '12px 16px calc(env(safe-area-inset-bottom) + 20px)',
-        background: 'linear-gradient(180deg, rgba(247,245,255,0) 0%, rgba(247,245,255,1) 30%)',
+        background: 'linear-gradient(180deg, rgba(8,4,15,0) 0%, rgba(8,4,15,1) 40%)',
       }}>
         <button
           onClick={() => {
