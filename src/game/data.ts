@@ -4,25 +4,60 @@ export type CategoryId = 'geral' | 'futebol' | 'personalizada';
 export const CATEGORY_DATA: Record<CategoryId, Pair[]> = {
   geral: [
     { word: 'Espelho', hint: 'Verdade sem voz' },
-    { word: 'Casamento', hint: 'Promessa com plateia' },
     { word: 'Futebol', hint: 'Religião de domingo' },
-    { word: 'Supermercado', hint: 'Labirinto com carrinho' },
+    
     { word: 'Aeroporto', hint: 'Despedidas em série' },
     { word: 'Professor', hint: 'Autoridade com giz' },
-    { word: 'Telemóvel', hint: 'Extensão do polegar' },
     { word: 'Pai Natal', hint: 'Mentira coletiva' },
     { word: 'Cinema', hint: 'Escuridão partilhada' },
     { word: 'Chuva', hint: 'Desculpa para ficar' },
     { word: 'Segunda-feira', hint: 'Regresso inevitável' },
-    { word: 'Barba', hint: 'Paisagem masculina' },
-    { word: 'Sushi', hint: 'Arte em bocados' },
+    { word: 'Barba', hint: 'paisagem masculina' },
+    { word: 'Sushi', hint: 'asia' },
     { word: 'Tatuagem', hint: 'Decisão permanente' },
-    { word: 'Polícia', hint: 'Autoridade fardada' },
-    { word: 'Ressaca', hint: 'Fatura da noite anterior' },
+    { word: 'Ressaca', hint: 'Fatura da noite ' },
     { word: 'Padaria', hint: 'Cheiro que acorda o bairro' },
-    { word: 'Piscina', hint: 'Azul com cloro' },
     { word: 'Sogra', hint: 'Parente por contrato' },
-    { word: 'Lisboa', hint: 'Sete colinas com eléctrico' },
+    { word: 'Lisboa', hint: 'eléctrico' },
+    { word: 'Computador', hint: 'Cérebro emprestado' },
+
+{ word: 'Trânsito', hint: 'Paciência testada' },
+
+{ word: 'Médico', hint: 'Confiança obrigatória' },
+
+{ word: 'Supermercado', hint: 'Tentação em corredores' },
+
+{ word: 'Amigo', hint: 'Família escolhida' },
+
+{ word: 'Fogo', hint: 'Calor indomável' },
+
+{ word: 'Ar condicionado', hint: 'deus na terra' },
+
+{ word: 'Teatro', hint: 'Mentira ao vivo' },
+
+{ word: 'Dinossauro', hint: 'Passado gigante' },
+
+{ word: 'Banco', hint: 'Confiança com juros' },
+
+{ word: 'Carta', hint: 'Mensagem lenta' },
+
+
+
+{ word: 'Montanha', hint: 'Desafio vertical' },
+
+{ word: 'Desporto', hint: 'Competição organizada' },
+
+{ word: 'Escola', hint: 'Obrigação coletiva' },
+
+{ word: 'Ópera', hint: 'Drama cantado' },
+
+
+
+{ word: 'Jantar', hint: 'Ritual noturno' },
+
+{ word: 'Silêncio', hint: 'Barulho ausente' },
+
+{ word: 'Mapa', hint: 'Mundo reduzido' }
   ],
   futebol: [
     { word: 'Ronaldo', hint: 'Acabado' },
@@ -37,10 +72,50 @@ export const CATEGORY_DATA: Record<CategoryId, Pair[]> = {
     { word: 'Chelsea', hint: 'Nunca mais acaba' },
     { word: 'Bruno Fernandes', hint: 'Ferve rapidamente' },
     { word: 'Kanté', hint: 'Tem golo' },
-    { word: 'Pepe', hint: 'Feio' },
+    { word: 'Pepe', hint: 'Forte e feio' },
     { word: 'Figo', hint: 'Amadureceu' },
     { word: 'Bas Dost', hint: 'Careca' },
+
+    { word: 'Mbappé', hint: 'Apressado' },
+
+{ word: 'Haaland', hint: 'Robô' },
+
+{ word: 'Neymar', hint: 'Piscinas' },
+
+{ word: 'Modric', hint: 'Eterno' },
+
+{ word: 'Sérgio Ramos', hint: 'Perigoso' },
+
+
+
+
+
+{ word: 'Griezmann', hint: 'Esquisito' },
+
+{ word: 'João Félix', hint: 'Promessa' },
+
+{ word: 'Bernardo Silva', hint: 'Pequeno' },
+
+{ word: 'Atlético Madrid', hint: 'Chato' },
+
+{ word: 'Real Madrid', hint: 'Sorte' },
+
+{ word: 'Barcelona', hint: 'Falido' },
+
+{ word: 'PSG', hint: 'Rico' },
+
+{ word: 'Juventus', hint: 'Velha' },
+
+{ word: 'Anfield', hint: 'Barulhento' },
+
+{ word: 'Santiago Bernabéu', hint: 'Luxo' },
+
+{ word: 'San Siro', hint: 'Partilhado' },
+
+
   ],
+
+
   personalizada: [
     { word: 'Marina', hint: 'Porto de abrigo' },
     { word: 'Isadora', hint: 'Exploradora' },
@@ -55,7 +130,18 @@ export const CATEGORY_DATA: Record<CategoryId, Pair[]> = {
     { word: 'Rolo', hint: 'Pássaro' },
     { word: 'Pipo', hint: 'Aeroporto' },
     { word: 'Cagão', hint: 'Meu pau na tua mão'},
-    { word: 'Papá do açucar', hint: 'Doce'}
+    { word: 'Papá do açucar', hint: 'Doce'},
+    { word: 'Pro Clubs', hint: 'Abandonado'},
+    { word: 'Fortnite', hint: 'Nostalgia'},
+    { word: 'Tangerino', hint: 'Laranja'},
+    { word: 'Madeira', hint: 'Prego'},
+    { word: 'Costa Brava', hint: 'Carro'},
+    { word: 'Jamor', hint: 'Bebedouro'},
+    { word: 'Xereca', hint: 'Leste Europeu'},
+    { word: 'Bailarina Capuccina', hint: 'Café em movimento'},
+    { word: 'Mamada', hint: 'Alíviado'},
+    { word: 'GTA', hint: 'Conduzir'},
+
   ],
 };
 
